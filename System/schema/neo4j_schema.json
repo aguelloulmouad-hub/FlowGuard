@@ -1,0 +1,321 @@
+{
+  "nodes": {
+    "Transaction": {
+      "description": "Repr\u00e9sente une transaction financi\u00e8re",
+      "properties": [
+        {
+          "name": "transaction_id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "merchant_category",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "location",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "is_foreign",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "is_online",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "hour_of_day",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "day_of_week",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "is_fraud",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "score",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "prediction",
+          "type": "integer",
+          "required": false
+        },
+        {
+          "name": "model_version",
+          "type": "integer",
+          "required": false
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "Alert": {
+      "description": "Alerte de fraude g\u00e9n\u00e9r\u00e9e pour une transaction",
+      "properties": [
+        {
+          "name": "alert_id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "transaction_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "score",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "threshold",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "Agency": {
+      "description": "Agence financi\u00e8re",
+      "properties": [
+        {
+          "name": "agency_id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "Model": {
+      "description": "Mod\u00e8le ML local par agence",
+      "properties": [
+        {
+          "name": "model_id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "train_samples",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "threshold",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "accuracy",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "precision",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "recall",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "f1",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "fraud_rate",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "artifact_path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "last_trained_at",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "FederatedRound": {
+      "description": "Round d'agr\u00e9gation de Federated Learning",
+      "properties": [
+        {
+          "name": "round_id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "global_version",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "aggregated_agencies",
+          "type": "array",
+          "required": true
+        },
+        {
+          "name": "base_local_versions",
+          "type": "object",
+          "required": true
+        },
+        {
+          "name": "accuracy",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "precision",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "recall",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "f1",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "fraud_rate",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "artifact_path",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  },
+  "relationships": [
+    {
+      "from": "Transaction",
+      "to": "Agency",
+      "type": "BELONGS_TO",
+      "description": "Une transaction appartient \u00e0 une agence",
+      "properties": []
+    },
+    {
+      "from": "Transaction",
+      "to": "Alert",
+      "type": "TRIGGERED",
+      "description": "Une transaction a d\u00e9clench\u00e9 une alerte",
+      "properties": []
+    },
+    {
+      "from": "Transaction",
+      "to": "Model",
+      "type": "SCORED_BY",
+      "description": "Une transaction a \u00e9t\u00e9 \u00e9valu\u00e9e par un mod\u00e8le",
+      "properties": []
+    },
+    {
+      "from": "Model",
+      "to": "Agency",
+      "type": "OWNED_BY",
+      "description": "Un mod\u00e8le appartient \u00e0 une agence",
+      "properties": []
+    },
+    {
+      "from": "FederatedRound",
+      "to": "Model",
+      "type": "AGGREGATES",
+      "description": "Un round FL agr\u00e8ge les poids de plusieurs mod\u00e8les locaux",
+      "properties": []
+    }
+  ],
+  "dash_queries": {
+    "recent_transactions": "MATCH (t:Transaction) RETURN t ORDER BY t.created_at DESC LIMIT 100",
+    "active_alerts": "MATCH (a:Alert) RETURN a ORDER BY a.timestamp DESC LIMIT 50",
+    "model_versions": "MATCH (m:Model) RETURN m ORDER BY m.created_at DESC",
+    "federated_rounds": "MATCH (f:FederatedRound) RETURN f ORDER BY f.created_at DESC",
+    "fraud_rate_by_agency": "MATCH (m:Model)-[:OWNED_BY]->(ag:Agency) RETURN ag.name, m.fraud_rate, m.version, m.created_at ORDER BY m.created_at DESC",
+    "high_score_alerts": "MATCH (a:Alert) WHERE a.score > 0.8 RETURN a ORDER BY a.score DESC LIMIT 20",
+    "agency_stats": "MATCH (t:Transaction)-[:BELONGS_TO]->(ag:Agency) RETURN ag.name, COUNT(t) AS transaction_count, SUM(CASE WHEN t.is_fraud=true THEN 1 ELSE 0 END) AS fraud_count",
+    "model_performance": "MATCH (m:Model) RETURN m.agency, m.version, m.accuracy, m.precision, m.recall, m.f1 ORDER BY m.created_at DESC LIMIT 50"
+  }
+}
