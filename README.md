@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🛡️ FlowGuard
 
@@ -424,4 +424,3 @@ FL_TRIGGER = 3                # Trigger FL when 3 agencies have new version
 **Made with ❤️ for Big Data & Fraud Detection**
 
 </div>
-]]>
