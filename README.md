@@ -415,7 +415,6 @@ FL_TRIGGER = 3                # Trigger FL when 3 agencies have new version
 - **AGUELLOUL Mouad**
 
 > Mini-Projet Big Data — Master AIDC S2  
-> Université / École — 2025–2026
 
 ---
 
