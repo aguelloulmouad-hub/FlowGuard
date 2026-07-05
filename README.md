@@ -383,6 +383,9 @@ The FlowGuard Dashboard is a **multi-page Dash application** with real-time Neo4
 
 **Features**: Dark theme (Darkly), auto-refresh, Neo4j connection status indicator, responsive layout.
 
+<p align="center">
+  <img src="Imgs/visualisation.png" alt="FlowGuard Dashboard Preview" width="100%">
+</p>
 ---
 
 ## ⚡ Configuration
